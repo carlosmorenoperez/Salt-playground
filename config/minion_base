@@ -1,0 +1,4 @@
+master: master
+id: infra01
+grains:
+  service: web01

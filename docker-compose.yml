@@ -1,0 +1,30 @@
+version: '3.10'
+
+services: 
+  salt-master:
+    hostname: master
+    build:
+      context: .
+      dockerfile: dockerfile.master
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - ./salt/master.d:/etc/salt/master.d
+      - ./srv:/srv
+      - ./certs:/etc/pki/certs
+    ports:
+      - "8000:8000"
+    networks:
+      - salt  
+  salt-minion:
+    hostname: infra01
+    build:
+      context: .
+      dockerfile: dockerfile.minion
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    depends_on:
+      - salt-master
+    networks:
+      - salt
+networks:
+  salt:
