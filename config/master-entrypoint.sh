@@ -14,11 +14,11 @@ fi
 # Start the Salt Master
 /usr/bin/salt-master --log-file-level=debug &
 
-#if [ ! -f "/etc/salt/certslocalhost.crt" ]; then
+if [ ! -f "/etc/salt/certslocalhost.crt" ]; then
 
-#  /usr/bin/salt-run salt.cmd tls.create_self_signed_cert
+  /usr/bin/salt-run salt.cmd tls.create_self_signed_cert
 
-#fi
+fi
 
 # Rights
 
