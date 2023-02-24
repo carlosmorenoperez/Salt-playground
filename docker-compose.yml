@@ -10,11 +10,11 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - ./salt/master.d:/etc/salt/master.d
       - ./srv:/srv
-      - ./certs:/etc/pki/certs
+      - ./tls:/etc/salt/certs/tls
     ports:
       - "8000:8000"
-#    networks:
-#      - salt  
+    networks:
+      - salt  
   salt-minion:
     hostname: infra01
     build:
@@ -24,8 +24,8 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     depends_on:
       - salt-master
-#    networks:
-#      - salt
-#
-#networks:
-#  salt:
+    networks:
+      - salt
+networks:
+  salt:
+    name: playgroud

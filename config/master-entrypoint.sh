@@ -2,19 +2,13 @@
 
 set -e
 
-echo "Starting Salt Master ..."
-
-
 if [ ! -f "/etc/salt/certs" ]; then
 
   mkdir -p /etc/salt/certs
 
 fi
 
-# Start the Salt Master
-/usr/bin/salt-master --log-file-level=debug &
-
-if [ ! -f "/etc/salt/certslocalhost.crt" ]; then
+if [ ! -f "/etc/salt/certs/tls/certs/localhost.crt" ]; then
 
   /usr/bin/salt-run salt.cmd tls.create_self_signed_cert
 
@@ -28,11 +22,17 @@ if [ -f "/var/run/salt" ]; then
 
 fi
 
+
 if [ -f "/etc/salt/certs" ]; then
 
-   chmod -R 775 /etc/pki
+   chmod -R 775 /etc/salt/certs
 
 fi
+
+# Start the Salt Master
+echo "Starting Salt Master ..."
+
+/usr/bin/salt-master --log-file-level=debug &
 
 # Start the Salt API
 echo "Starting Salt API..."
