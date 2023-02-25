@@ -1,4 +1,4 @@
-# Salt-playgound
+# Salt-playground
 
 My docker compose salt master api minion playground thing
 
