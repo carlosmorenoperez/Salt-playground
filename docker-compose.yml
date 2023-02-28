@@ -5,7 +5,7 @@ services:
     hostname: master
     build:
       context: .
-      dockerfile: dockerfile.master
+      dockerfile: Master/dockerfile
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - ./salt/master.d:/etc/salt/master.d
@@ -16,10 +16,9 @@ services:
     networks:
       - salt  
   salt-minion:
-    hostname: infra01
     build:
       context: .
-      dockerfile: dockerfile.minion
+      dockerfile: Minions/dockerfile
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     depends_on:

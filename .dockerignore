@@ -1,3 +1,4 @@
 *
 !config/*
-
+!Master/dockerfile
+!Minion/dockerfile

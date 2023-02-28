@@ -21,6 +21,29 @@ https://github.com/carlosmorenoperez/Salt-playgound.git && cd Salt-playground
 docker-compose up
 ```
 
+* One minion isn't salty enogh?
+
+ * When you build
+
+ ```bash
+ docker-compose up --scale salt-minion=4
+ ```
+
+ ```bash
+ Creating salt-playgound_salt-minion_2 ... done
+ Creating salt-playgound_salt-minion_3 ... done
+ Creating salt-playgound_salt-minion_4 ... done
+ ```
+ 
+ * When the compose is running
+
+ ```bash
+ docker-compose scale salt-minion=2
+ WARNING: The scale command is deprecated. Use the up command with the --scale flag instead.
+ Creating salt-playgound_salt-minion_2 ... done
+ ```
+
+
 ## Testing
 
   * Conect to master container
