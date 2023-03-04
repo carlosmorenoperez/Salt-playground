@@ -5,7 +5,7 @@ services:
     hostname: master
     build:
       context: .
-      dockerfile: Master/dockerfile
+      dockerfile: Master/Dockerfile
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - ./salt/master.d:/etc/salt/master.d
@@ -18,11 +18,19 @@ services:
   salt-minion:
     build:
       context: .
-      dockerfile: Minions/dockerfile
+      dockerfile: Minions/Dockerfile
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     depends_on:
       - salt-master
+    networks:
+      - salt
+  salt-vault:
+    image: vault:1.12.3
+    depends_on:
+      - salt-master
+    ports:
+      - "8200:8200"
     networks:
       - salt
 networks:

@@ -1,6 +1,6 @@
 {% if ntp_servers %}
 {% for server in ntp_servers %}
-server {{ server }}
+server {{ server }} iburst
 {% endfor %}
 {% else %}
 server 0.pool.ntp.org iburst
