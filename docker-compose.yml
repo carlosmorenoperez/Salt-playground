@@ -8,17 +8,33 @@ services:
       dockerfile: Master/Dockerfile
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
-      - ./salt/master.d:/etc/salt/master.d
+      - ./salt/cloud.profile.d:/etc/salt/cloud.profile.d:ro
+      - ./salt/cloud.providers.d:/etc/salt/cloud.providers.d:ro
+      - ./salt/master.d:/etc/salt/master.d:ro
       - ./srv:/srv
       - ./tls:/etc/salt/certs/tls
     ports:
       - "8000:8000"
+      - "4505:4505" 
+      - "4506:4505"
     networks:
       - salt  
   salt-minion:
     build:
       context: .
       dockerfile: Minions/Dockerfile
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    depends_on:
+      - salt-master
+    networks:
+      - salt
+  
+  ntp-server:
+    build:
+      context: .
+      dockerfile: Ntp/Dockerfile
+    privileged: true
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     depends_on:

@@ -11,8 +11,8 @@ RUN echo "salt:CloruroSodico" | chpasswd
 RUN \
     apt -y update && \
     apt -y upgrade && \
-    apt -y install ca-certificates python-is-python3 python3-pip apt-utils curl wget gnupg && \
-    pip install cherrypy ws4py PyOpenSSL
+    apt -y install ca-certificates python-is-python3 python3-pip apt-utils curl wget gnupg python3-ipy && \
+    pip install cherrypy ws4py PyOpenSSL IPy
 
 
 RUN \
@@ -25,7 +25,8 @@ RUN \
     apt-get -y install salt-ssh && \
     apt-get -y install salt-syndic && \
     apt-get -y install salt-cloud && \
-    apt-get -y install salt-api
+    apt-get -y install salt-api && \
+    apt autoremove -y 
 
 RUN chmod -R 775 /etc/salt /var/cache/salt /var/log/salt
 

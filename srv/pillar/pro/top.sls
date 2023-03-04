@@ -1,5 +1,5 @@
 base:
   '*':
    - default-timezone
-  'G@role:ntp_mater':
+  'G@role:ntp-server':
    - tempo

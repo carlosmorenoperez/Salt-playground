@@ -14,6 +14,12 @@ if [ ! -f "/etc/salt/certs/tls/certs/localhost.crt" ]; then
 
 fi
 
+if [ ! -f "/etc/salt/cloud.deploy.d/bootstrap-salt.sh" ]; then
+
+  /usr/bin/salt-cloud -u
+
+fi
+
 # Rights
 
 if [ -f "/var/run/salt" ]; then

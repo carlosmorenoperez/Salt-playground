@@ -1,0 +1,4 @@
+master: master
+grains:
+  organization: freaktones
+  role: ntp-server
