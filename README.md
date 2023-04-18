@@ -1,5 +1,7 @@
 # Salt-playground
 
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white) ![LINUX](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
+
 My docker compose salt master api minion playground thing
 
 ## Pre-requisites
